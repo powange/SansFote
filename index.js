@@ -1,7 +1,8 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 const unirest = require("unirest");
-const friendId = "YOUR-FRIEND-ID"
+const friendId = "YOUR-FRIEND-ID";
+const botToken = "YOUR-TOKEN-HERE";
 
 client.on('ready', () => {
     console.log(`🚀 Connecté en tant que ${client.user.tag}!`);
@@ -66,4 +67,4 @@ client.on('message', msg => {
 
 });
 
-client.login('YOUR-TOKEN-HERE');
+client.login(botToken);

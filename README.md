@@ -7,3 +7,6 @@ Mettez tout simplement l'identifiant de votre ami ici
 ```js
 const friendId = "YOUR-FRIEND-ID"
 ```
+# Exemples
+![example1](https://i.ibb.co/dGD6G4y/image.png)
+![example2](https://i.ibb.co/mvz6mCc/image.png)

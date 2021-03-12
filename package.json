@@ -1,10 +1,10 @@
 {
-  "name": "bot",
+  "name": "discord-sansfote",
   "version": "1.0.0",
-  "description": "",
+  "description": "Bot Discord avertissant la présence de fautes d'orthographe",
   "main": "index.js",
   "dependencies": {
-    "discord.js": "^12.2.0",
+    "discord.js": "^12.5.1",
     "unirest": "^0.6.0"
   },
   "devDependencies": {},

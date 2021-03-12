@@ -24,43 +24,45 @@ client.on('message', msg => {
         'Content-Type': 'application/x-www-form-urlencoded'
     });
 
-
     req.end(function (res) {
         if (res.error) throw new Error(res.error);
         let response = res.body.matches;
 
         let nbrFautes = response.length;
 
+        let lines = [];
+
         if (nbrFautes === 1) {
-            chan.send(`${msg.author} Tu as fais une faute dans cette phrase : ` + response[0].sentence)
+            lines.push(`${msg.author} Tu as fais une faute dans cette phrase : ` + response[0].sentence);
             response.forEach(word => {
                 if (response[0].replacements[0]) {
-                    if (word.message == "Possible spelling mistake found.") {
-                        chan.send("Elle s'écrit plutôt comme ça : " + word.replacements[0].value)
+                    if (word.message === "Possible spelling mistake found.") {
+                        lines.push("Elle s'écrit plutôt comme ça : " + word.replacements[0].value);
                     } else {
-                        chan.send(word.message)
+                        lines.push(word.message);
                     }
                 } else {
-                    chan.send("Mais je ne sais pas où exactement");
+                    lines.push("Mais je ne sais pas où exactement");
                 }
             })
         } else {
-            chan.send(`${msg.author} Tu as fais plusieurs fautes dans cette phrase : ` + response[0].sentence)
+            lines.push(`${msg.author} Tu as fais plusieurs fautes dans cette phrase : ` + response[0].sentence);
 
             response.forEach(word => {
                 if (word.message === "Possible spelling mistake found.") {
                     if (word.replacements[0]) {
-                        chan.send("Une de tes fautes s'écrit plutôt comme ça : " + word.replacements[0].value)
+                        lines.push("Une de tes fautes s'écrit plutôt comme ça : " + word.replacements[0].value);
                     } else {
-                        chan.send("Je n'arrive pas à cerner une de tes fautes mais elle est bien présente")
+                        lines.push("Je n'arrive pas à cerner une de tes fautes mais elle est bien présente");
                     }
                 } else {
-                    chan.send(word.message)
+                    lines.push(word.message);
                 }
             })
         }
-    });
 
+        chan.send(lines.join("\n"));
+    });
 
 });
 
